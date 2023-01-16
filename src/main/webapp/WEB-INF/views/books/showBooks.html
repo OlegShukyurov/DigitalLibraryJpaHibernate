@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+</head>
+<body>
+
+    <div th:each = "book : ${books}">
+        <a th:href = "@{/books/{id} (id=${book.getId()})}"
+           th:text = "${book.getTitle() + ', ' + book.getAuthorName() + ', ' + book.getYearOfWriting()}">VALUE
+        </a>
+    </div>
+    <hr/>
+    <a href="/books/new">Добавить книгу</a>
+    <br/>
+    <a href="/books?sort_by_year=true">Отсортировать по году</a>
+    <br/>
+    <a href="/people">К читателям</a>
+</body>
+</html>

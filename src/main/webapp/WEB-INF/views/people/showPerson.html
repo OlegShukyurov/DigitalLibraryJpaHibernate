@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show person</title>
+</head>
+<body>
+    <p th:text = "${person.getFullName() + ', ' + person.getYearOfBirthday()}">VALUE</p>
+    <div th:if = "${listOfBooks.isEmpty()}">
+        <p th:text = "${'Человек пока не взял ни одной книги'}">VALUE</p>
+    </div>
+    <div th:if = "${!listOfBooks.isEmpty()}">
+        <hr/>
+        <p><b>Книги:</b></p>
+        <div th:each = "book : ${listOfBooks}">
+            <div style="color: red" th:if = "${book.isExpired()}" th:text =
+                    "${book.getTitle() + ', ' + book.getAuthorName() + ', ' + book.getYearOfWriting()}"> Expired book </div>
+            <div th:if = "${!book.isExpired()}" th:text =
+                    "${book.getTitle() + ', ' + book.getAuthorName() + ', ' + book.getYearOfWriting()}"> Unexpired book </div>
+        </div>
+    </div>
+    <hr/>
+    <form th:method = "GET" th:action = "@{/people/{id}/edit (id=${person.getId()})}">
+        <input type="submit" value="Редактировать"/>
+    </form>
+    <br/>
+    <form th:method = "DELETE" th:action = "@{/people/{id} (id=${person.getId()})}">
+        <input type="submit" value="Удалить"/>
+    </form>
+</body>
+</html>
