@@ -1,1 +1,1 @@
-# DigitalLibrary
+# DigitalLibraryJpaHibernate
